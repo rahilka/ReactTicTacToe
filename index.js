@@ -3,10 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class Square extends React.Component {
+  // store the current value of the square in state,
+  // and change it when the sqare is clicked
+
+  constructor(props) {
+    super();  //In JavaScript classes, you need to explicitly call super(); when defining the constructor of a subclass
+    this.state = {
+      value: null,
+    };
+  }
+
   render() {
     return (
-      <button className="square">
-        {/* TODO */}
+      // Whenever this.setState is called, an update to the component is scheduled
+      // causing React to merge in the passed state update and rerender the component along with its descendants.
+      <button className="square" onClick={() => this.setState({value: 'X'})}>
+        {this.state.value}
       </button>
     );
   }
@@ -14,7 +26,7 @@ class Square extends React.Component {
 
 class Board extends React.Component {
   renderSquare(i) {
-    return <Square />;
+    return <Square value={i} />;
   }
 
   render() {
